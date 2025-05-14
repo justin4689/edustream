@@ -5,11 +5,13 @@ import { videos } from '../../../db/schema';
 import { eq } from 'drizzle-orm';
 
 import Link from 'next/link';
-import VideoCard, { Video } from '../../../../components/VideoCard';
+import { Video } from '../../../../components/VideoCard';
 
-export default async function VideoPage({ params }: { params: { slug: string } }) {
+export default async function VideoPage({ params }: { params: Promise<{ slug: string }> }) {
+  
+  const { slug } = await params;
   // Récupère la vidéo principale
-  const result = await db.select().from(videos).where(eq(videos.slug, params.slug));
+  const result = await db.select().from(videos).where(eq(videos.slug, slug));
   const video = result[0];
 
   if (!video) {

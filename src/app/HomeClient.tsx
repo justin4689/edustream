@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import Header from "../../components/Header";
 import VideoCard from "../../components/VideoCard";
 import Link from "next/link";
+import { Video } from "../../components/VideoCard";
 
 interface HomeClientProps {
-  videoList: any[];
+  videoList: Video[];
 }
 
 const VIDEOS_PER_PAGE = 6;
